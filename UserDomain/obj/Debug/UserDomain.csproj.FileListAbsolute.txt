@@ -1,0 +1,15 @@
+c:\users\administrator\documents\visual studio 2015\Projects\UserDomain\UserDomain\bin\Debug\UserDomain.exe.config
+c:\users\administrator\documents\visual studio 2015\Projects\UserDomain\UserDomain\obj\Debug\UserDomain.csprojResolveAssemblyReference.cache
+c:\users\administrator\documents\visual studio 2015\Projects\UserDomain\UserDomain\bin\Debug\UserDomain.exe
+c:\users\administrator\documents\visual studio 2015\Projects\UserDomain\UserDomain\bin\Debug\UserDomain.pdb
+c:\users\administrator\documents\visual studio 2015\Projects\UserDomain\UserDomain\obj\Debug\UserDomain.exe
+c:\users\administrator\documents\visual studio 2015\Projects\UserDomain\UserDomain\obj\Debug\UserDomain.pdb
+c:\users\administrator\documents\visual studio 2015\Projects\UserDomain\UserDomain\bin\Debug\Autofac.dll
+c:\users\administrator\documents\visual studio 2015\Projects\UserDomain\UserDomain\bin\Debug\Dapper.dll
+c:\users\administrator\documents\visual studio 2015\Projects\UserDomain\UserDomain\bin\Debug\DapperExtensions.dll
+c:\users\administrator\documents\visual studio 2015\Projects\UserDomain\UserDomain\bin\Debug\Autofac.xml
+c:\users\administrator\documents\visual studio 2015\Projects\UserDomain\UserDomain\bin\Debug\Dapper.xml
+c:\users\administrator\documents\visual studio 2015\Projects\UserDomain\UserDomain\bin\Debug\DapperExtensions.pdb
+C:\Users\Administrator\Source\Repos\DDD_UserSystem\UserDomain\bin\Debug\UserDomain.exe.config
+C:\Users\Administrator\Source\Repos\DDD_UserSystem\UserDomain\obj\Debug\UserDomain.exe
+C:\Users\Administrator\Source\Repos\DDD_UserSystem\UserDomain\obj\Debug\UserDomain.pdb
