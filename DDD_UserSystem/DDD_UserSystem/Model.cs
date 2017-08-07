@@ -9,7 +9,7 @@ namespace UserDomain
 
     public class User
     {
-
+        //lihai
 
           public  Guid UserId { get; set; }
           public  string RealName { get; set; }
