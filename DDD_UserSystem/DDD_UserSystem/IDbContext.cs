@@ -9,6 +9,8 @@ namespace DDD_UserSystem
     //表示仓储的接口
   public  interface IDbContext
     {
-        int SaveChange();
+        int Commit();
+
+        int verson { get; set; }
     }
 }

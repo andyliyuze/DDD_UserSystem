@@ -9,6 +9,6 @@ namespace UserDomain
   public  interface IStudentRepository
     {
         Student Get(Guid userId);
-      
+        void Add(Student student);
     }
 }

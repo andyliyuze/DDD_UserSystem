@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,18 +12,29 @@ namespace UserDomain
     public class User
     {
         //lihai
-
-          public  Guid UserId { get; set; }
+        [Key]
+        public  Guid UserId { get; set; }
           public  string RealName { get; set; }
           public string Age { get; set; }
          
     }
+    
 
     public class Student : User
     {
-        public string Grade { get; set; }
-        public string IQ { get; set; }
+
+
+        public Student()
+        {
+
+            Address = new Address();
+            LoginInfo = new LoginInfo();
+        }
+        public string Grade { get; private set; }
+        public string IQ { get; private set; }
+      
         public LoginInfo LoginInfo { get; private set; }
+       
         public Address Address { get; private set; }
         public List<Contact> Contacts { get; private set; }
 
@@ -68,6 +81,8 @@ namespace UserDomain
         public Address Address { get; set; }
         public List<Contact> Contacts { get; set; }
     }
+    
+    [ComplexType]
     public class LoginInfo {
       
 
@@ -76,15 +91,13 @@ namespace UserDomain
         public string Password { get; set; }
 
     }
-
+    [ComplexType]
     public class Address
     {
-
-      
         public String Contry { get; set; }
         public String Detail { get; set; }
     }
-
+    [ComplexType]
     public class Contact
     {
        

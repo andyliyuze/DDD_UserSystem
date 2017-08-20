@@ -12,9 +12,10 @@ namespace UserDomain
 
         private IStudentRepository _studentRepository;
         private IDbContext _context;
-        public StudentApplicationService(IStudentRepository studentRepository)
+        public StudentApplicationService(IDbContext context, IStudentRepository studentRepository)
         {
             _studentRepository = studentRepository;
+            _context = context;
 
         }
 
@@ -22,8 +23,16 @@ namespace UserDomain
         {
             Student student = _studentRepository.Get(userId);
             student.ChangePassword(oldPwd, newPwd);
-            _context.SaveChange();
+            _context.Commit();
             return true;
+        }
+
+
+        public bool AddStudent(Student student)
+        {
+            _studentRepository.Add(student);
+            int i=  _context.Commit();
+            return i > 0;
         }
     }
 }
