@@ -21,33 +21,33 @@ namespace UserDomain
     {
         public string Grade { get; set; }
         public string IQ { get; set; }
-        private LoginInfo LoginInfo { get; set; }
-        private Address Address { get; set; }
-        private List<Contact> Contacts { get; set; }
+        public LoginInfo LoginInfo { get; private set; }
+        public Address Address { get; private set; }
+        public List<Contact> Contacts { get; private set; }
 
 
 
 
 
-        public void ChangePassword( string oldPassword, string newPassword)
+        public bool ChangePassword( string oldPassword, string newPassword)
         {
-            if (oldPassword != LoginInfo.Password || oldPassword == null) { return ; }
-            else { LoginInfo.Password = newPassword; }
-        }
 
-        public bool Delete(Guid userId)
-        {
-            throw new NotImplementedException();
+            if (oldPassword ==null || newPassword == null) { throw  new NullReferenceException("密码不能为空");  }
+            if (oldPassword != LoginInfo.Password ) { return false; }
+            var loginInfo = new LoginInfo() { LoginName = this.LoginInfo.LoginName, Password = newPassword };
+            this.LoginInfo = LoginInfo;
+            return true;
         }
 
      
-        public Address GetAddress(Guid Id)
+     
+       
+        public bool AddLoginInfo(string LoginName, string Pwd)
         {
-            throw new NotImplementedException();
-        }
-        public bool AddLoginInfo(Guid userId, string LoginName, string Pwd)
-        {
-            throw new NotImplementedException();
+            if (LoginName == null || Pwd == null) { throw new Exception("登录名或密码不能为空"); }
+            var loginInfo =new LoginInfo() { LoginName = this.LoginInfo.LoginName, Password = Pwd };
+            this.LoginInfo = LoginInfo;
+            return true;
         }
 
     }
@@ -69,7 +69,9 @@ namespace UserDomain
         public List<Contact> Contacts { get; set; }
     }
     public class LoginInfo {
-        public Guid UserId { get; set; }
+      
+
+
         public string LoginName { get; set; }
         public string Password { get; set; }
 
@@ -78,14 +80,14 @@ namespace UserDomain
     public class Address
     {
 
-        public Guid UserId { get; set; }
+      
         public String Contry { get; set; }
         public String Detail { get; set; }
     }
 
     public class Contact
     {
-        public Guid UserId { get; set; }
+       
         public int QQ { get; set; }
         public int Phone { get; set; }
     }

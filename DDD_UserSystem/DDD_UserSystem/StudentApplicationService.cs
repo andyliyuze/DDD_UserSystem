@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DDD_UserSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace UserDomain
     {
 
         private IStudentRepository _studentRepository;
+        private IDbContext _context;
         public StudentApplicationService(IStudentRepository studentRepository)
         {
             _studentRepository = studentRepository;
@@ -20,6 +22,7 @@ namespace UserDomain
         {
             Student student = _studentRepository.Get(userId);
             student.ChangePassword(oldPwd, newPwd);
+            _context.SaveChange();
             return true;
         }
     }
