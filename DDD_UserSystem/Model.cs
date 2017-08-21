@@ -22,13 +22,12 @@ namespace UserDomain
 
     public class Student : User
     {
-
-
+    
         public Student()
         {
-
             Address = new Address();
             LoginInfo = new LoginInfo();
+            Contacts = new List<Contact>();
         }
         public string Grade { get; private set; }
         public string IQ { get; private set; }
@@ -36,7 +35,8 @@ namespace UserDomain
         public LoginInfo LoginInfo { get; private set; }
        
         public Address Address { get; private set; }
-        public List<Contact> Contacts { get; private set; }
+      
+        public List<Contact> Contacts { get;   set; }
 
 
 
@@ -82,26 +82,40 @@ namespace UserDomain
         public List<Contact> Contacts { get; set; }
     }
     
-    [ComplexType]
+   
     public class LoginInfo {
-      
 
 
+        [Column("LoginName")]
         public string LoginName { get; set; }
+        [Column("Password")]
         public string Password { get; set; }
 
     }
-    [ComplexType]
+   
     public class Address
     {
+         [Column("Contry")]
         public String Contry { get; set; }
+          [Column("Detail")]
         public String Detail { get; set; }
     }
-    [ComplexType]
+   //领域模型
     public class Contact
-    {
-       
+    { 
+        public Guid ContactId { get; set; }
         public int QQ { get; set; }
         public int Phone { get; set; }
+    }
+
+    public class ContactDataModel 
+    {
+        [Key]
+        public Guid ContactId { get; set; }
+
+        public Guid UserId { get; set; }
+        public int QQ { get; set; }
+        public int Phone { get; set; }
+    
     }
 }

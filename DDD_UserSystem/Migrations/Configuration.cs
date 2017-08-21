@@ -10,6 +10,7 @@ namespace DDD_UserSystem.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(DDD_UserSystem.UserContext context)

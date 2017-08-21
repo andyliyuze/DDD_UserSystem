@@ -27,7 +27,9 @@ namespace UserDomain
                 var service = scope.Resolve<IStudentRepository>();
                 context.verson = 1;
                 StudentApplicationService applicationservice = new StudentApplicationService(context,service);
-                var stu = new Student() { UserId = Guid.NewGuid(),  Age = "123" };
+                var list = new List<Contact>();
+                list.Add(new Contact() { ContactId = Guid.NewGuid(), Phone = 13531125 });
+                var stu = new Student() { UserId = Guid.NewGuid(), Age = "123", Contacts=list };
                 applicationservice.AddStudent(stu);
               //  applicationservice.ChangePassword(Guid.NewGuid(), "123", "123");
             }
