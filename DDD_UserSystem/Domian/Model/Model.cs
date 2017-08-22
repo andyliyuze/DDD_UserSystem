@@ -12,8 +12,8 @@ namespace UserDomain
     public class User
     {
         //lihai
-        [Key]
-        public  Guid UserId { get; set; }
+          [Key]
+          public  Guid UserId { get; set; }
           public  string RealName { get; set; }
           public string Age { get; set; }
          
@@ -48,7 +48,7 @@ namespace UserDomain
             if (oldPassword ==null || newPassword == null) { throw  new NullReferenceException("密码不能为空");  }
             if (oldPassword != LoginInfo.Password ) { return false; }
             var loginInfo = new LoginInfo() { LoginName = this.LoginInfo.LoginName, Password = newPassword };
-            this.LoginInfo = LoginInfo;
+            this.LoginInfo = loginInfo;
             return true;
         }
 
@@ -59,10 +59,29 @@ namespace UserDomain
         {
             if (LoginName == null || Pwd == null) { throw new Exception("登录名或密码不能为空"); }
             var loginInfo =new LoginInfo() { LoginName = this.LoginInfo.LoginName, Password = Pwd };
-            this.LoginInfo = LoginInfo;
+            this.LoginInfo = loginInfo;
             return true;
         }
 
+
+
+        public bool AddContact(Contact contact)
+        {
+            if (IsExistedBy(contact)) { return false; }
+            Contacts.Add(contact);
+            return true;
+        }
+
+        public bool IsExistedBy(Contact contact)
+        {
+            if (Contacts.Count == 0) { return false; }
+            foreach (var model in Contacts)
+            {
+
+                if (model.Equals(contact)) return true;
+            }
+            return false;
+        }
     }
 
 
@@ -102,20 +121,40 @@ namespace UserDomain
     }
    //领域模型
     public class Contact
-    { 
-        public Guid ContactId { get; set; }
-        public int QQ { get; set; }
-        public int Phone { get; set; }
-    }
-
-    public class ContactDataModel 
     {
-        [Key]
-        public Guid ContactId { get; set; }
+        private Contact() { }
+      
 
-        public Guid UserId { get; set; }
-        public int QQ { get; set; }
-        public int Phone { get; set; }
-    
+        public Contact(int qq, int phone)
+        {
+            if (qq == 0 && phone == 0) { throw new Exception("qq或电话不能全不为空"); }
+            ContactId = Guid.NewGuid();
+            QQ = qq;
+            Phone = phone;
+        }
+
+        public Guid ContactId { get; set; }
+        public int QQ { get;private set; }
+        public int Phone { get;private set; }
+
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj == null) return false;
+            Contact other = obj as Contact;
+            if ((object)other == null)  return false;
+            return this.Phone.Equals(other.Phone) &&
+                this.QQ.Equals(other.QQ) ;
+        }
+
+
+        public override int GetHashCode()
+        {
+            return this.QQ.GetHashCode() ^
+                this.Phone.GetHashCode() ;
+        }
     }
+
+  
 }

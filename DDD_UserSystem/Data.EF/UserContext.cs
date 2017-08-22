@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DDD_UserSystem.Data.EF.DataModel;
 using System.Data.Entity;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using UserDomain;
+using System;
+using System.Threading.Tasks;
 
 namespace DDD_UserSystem
 {
@@ -67,7 +65,28 @@ namespace DDD_UserSystem
 
         }
 
+        public void RegisterNew<TEntity>(TEntity entity) where TEntity : class
+        {
+            base.Set<TEntity>().Add(entity);
 
+        }
 
+        public void RegisterDirty<TEntity>(TEntity entity) where TEntity : class
+        {
+            base.Entry<TEntity>(entity).State = EntityState.Modified;
+        
+        }
+
+        public  void RegisterClean<TEntity>(TEntity entity) where TEntity : class
+        {
+            base.Entry<TEntity>(entity).State = EntityState.Unchanged;
+
+        }
+
+        public void RegisterDeleted<TEntity>(TEntity entity) where TEntity : class
+        {
+            base.Set<TEntity>().Remove(entity);
+
+        }
     }
 }

@@ -49,6 +49,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework.Extensions, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Extensions.0.0.2\lib\net40\EntityFramework.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
@@ -64,16 +68,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationService\IStudentApplicationService.cs" />
+    <Compile Include="Data.EF\DataModel\ContactDataModel.cs" />
     <Compile Include="DataMap\ContactMap.cs" />
     <Compile Include="IDbContext.cs" />
-    <Compile Include="IStudentRepository.cs" />
+    <Compile Include="Domian\Repository\IStudentRepository.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Model.cs" />
+    <Compile Include="Domian\Model\Model.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StudentApplicationService.cs" />
-    <Compile Include="StudentRepository.cs" />
-    <Compile Include="UserContext.cs" />
+    <Compile Include="ApplicationService\StudentApplicationService.cs" />
+    <Compile Include="Infrastructure\Repository\StudentRepository.cs" />
+    <Compile Include="Data.EF\UserContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
