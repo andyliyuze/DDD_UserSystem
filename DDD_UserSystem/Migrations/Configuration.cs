@@ -1,8 +1,9 @@
 namespace DDD_UserSystem.Migrations
 {
+    using Infrastructure;
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<DDD_UserSystem.UserContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<UserContext>
     {
         public Configuration()
         {
@@ -10,7 +11,7 @@ namespace DDD_UserSystem.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(DDD_UserSystem.UserContext context)
+        protected override void Seed(UserContext context)
         {
             //  This method will be called after migrating to the latest version.
 

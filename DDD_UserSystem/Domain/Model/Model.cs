@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DDD_UserSystem.Domain.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,11 +10,10 @@ using System.Threading.Tasks;
 namespace UserDomain
 {
 
-    public class User
+    public class User: AggregateRoot
     {
         //lihai
-          [Key]
-          public  Guid UserId { get; set; }
+         
           public  string RealName { get; set; }
           public string Age { get; set; }
          

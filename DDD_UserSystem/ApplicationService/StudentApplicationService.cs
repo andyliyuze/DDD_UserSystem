@@ -3,7 +3,9 @@ using System;
 using EntityFramework.Extensions;
 using System.Linq;
 using DDD_UserSystem.ApplicationService;
-
+using DDD_UserSystem.Infrastructure;
+using DDD_UserSystem.Data.EF.DataModel;
+using AutoMapper;
 namespace UserDomain
 {
 
@@ -12,11 +14,13 @@ namespace UserDomain
     {
 
         private IStudentRepository _studentRepository;
+        private IUnitOfWork _unitofwork;
         private IDbContext _context;
-        public StudentApplicationService(IDbContext context, IStudentRepository studentRepository)
+        public StudentApplicationService(IDbContext context, IUnitOfWork unitofwork, IStudentRepository studentRepository)
         {
             _studentRepository = studentRepository;
             _context = context;
+            _unitofwork = unitofwork;
 
         }
 
@@ -27,15 +31,16 @@ namespace UserDomain
             student.ChangePassword(oldPwd, newPwd);
             //EF有自动追踪功能
              //  _context.RegisterDirty<Student>(student);
-            _context.Commit();
+            _unitofwork.Commit();
             return true;
         }
 
 
-        public bool AddStudent(Student student)
+        public bool AddStudent(StudentDataModel student)
         {
-            _studentRepository.Add(student);
-            int i=  _context.Commit();
+            var domainModel= Mapper.Map<StudentDataModel, Student>(student);
+            _studentRepository.Add(domainModel);
+            int i=  _unitofwork.Commit();
             return i > 0;
         }
 
@@ -50,7 +55,7 @@ namespace UserDomain
                 if (flag)
                 {
                     _studentRepository.Update(student);
-                    _context.Commit();
+                    _unitofwork.Commit();
                     return true;
                 }
                 return false;
@@ -65,14 +70,14 @@ namespace UserDomain
 
             try
             {
-             
                 Student student = _studentRepository.Get(userId);
+               
                 var contact = student.Contacts.Where(a => a.ContactId == contactId).FirstOrDefault();
                 if (contact!=null)
                 {
                     student.Contacts.Remove(contact);
                     _studentRepository.Update(student);
-                    _context.Commit();
+                    _unitofwork.Commit();
                     return true;
                 }
                 return false;
@@ -81,5 +86,9 @@ namespace UserDomain
 
         }
 
+        public bool Remove(Guid UserId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

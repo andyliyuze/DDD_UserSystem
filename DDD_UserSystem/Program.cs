@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using DDD_UserSystem;
 using DDD_UserSystem.ApplicationService;
+using DDD_UserSystem.Infrastructure;
 using System;
 using System.Collections.Generic;
 
@@ -23,9 +24,10 @@ namespace UserDomain
             {
                 
                 var context = scope.Resolve<IDbContext>();
+                var unitofwork = scope.Resolve<IUnitOfWork>();
                 var service = scope.Resolve<IStudentRepository>();
                 context.verson = 1;
-                StudentApplicationService applicationservice = new StudentApplicationService(context,service);
+                StudentApplicationService applicationservice = new StudentApplicationService(context, unitofwork,service);
                 var list = new List<Contact>();
                 list.Add(new Contact(0,333) );
                 //var stu = new Student() { UserId = Guid.NewGuid(), Age = "123", Contacts = list };

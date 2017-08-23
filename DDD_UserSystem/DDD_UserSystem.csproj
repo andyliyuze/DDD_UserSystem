@@ -37,6 +37,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Documents\Visual Studio 2015\Projects\UserDomain\UserDomain\bin\Debug\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Documents\Visual Studio 2015\Projects\UserDomain\UserDomain\bin\Debug\Dapper.dll</HintPath>
@@ -69,17 +73,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationService\IStudentApplicationService.cs" />
+    <Compile Include="Data.EF\DataMapConfig.cs" />
     <Compile Include="Data.EF\DataModel\ContactDataModel.cs" />
+    <Compile Include="Data.EF\DataModel\StudentDataModel.cs" />
     <Compile Include="DataMap\ContactMap.cs" />
-    <Compile Include="IDbContext.cs" />
-    <Compile Include="Domian\Repository\IStudentRepository.cs" />
+    <Compile Include="Domain\AggregateRoot.cs" />
+    <Compile Include="Domain\IAggregateRoot.cs" />
+    <Compile Include="Domain\IEntity.cs" />
+    <Compile Include="Domain\Model\FriendsApply.cs" />
+    <Compile Include="Infrastructure\IDbContext.cs" />
+    <Compile Include="Domain\Repository\IStudentRepository.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Domian\Model\Model.cs" />
+    <Compile Include="Domain\Model\Model.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ApplicationService\StudentApplicationService.cs" />
     <Compile Include="Infrastructure\Repository\StudentRepository.cs" />
-    <Compile Include="Data.EF\UserContext.cs" />
+    <Compile Include="Infrastructure\UserContext.cs" />
+    <Compile Include="Infrastructure\Unitofwork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
