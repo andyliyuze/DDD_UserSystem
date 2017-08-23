@@ -80,7 +80,6 @@
     <Compile Include="Domain\AggregateRoot.cs" />
     <Compile Include="Domain\IAggregateRoot.cs" />
     <Compile Include="Domain\IEntity.cs" />
-    <Compile Include="Domain\Model\FriendsApply.cs" />
     <Compile Include="Infrastructure\IDbContext.cs" />
     <Compile Include="Domain\Repository\IStudentRepository.cs" />
     <Compile Include="Migrations\Configuration.cs" />

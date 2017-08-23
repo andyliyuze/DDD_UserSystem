@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DDD_UserSystem.Domain.Model
+namespace DDD_CommunitySystem.ApplicationService
 {
-  public  class FriendsApply
+  public  class FriendsApplyApplicationService
     {
+
     }
 }
