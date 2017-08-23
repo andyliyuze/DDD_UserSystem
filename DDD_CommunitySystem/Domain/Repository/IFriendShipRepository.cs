@@ -1,4 +1,4 @@
-﻿using DDD_CommunitySystem.Domain.Model;
+﻿using DDD_CommunitySystem.Domain.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,13 +1,8 @@
-﻿using DDD_CommunitySystem.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DDD_CommunitySystem.DataModel;
 
 namespace DDD_CommunitySystem.ApplicationService
 {
-  public  interface IFriendsApplyApplicationService
+    public  interface IFriendsApplyApplicationService
     {
         bool CreateFriendsApply(FriendsApplyDataModel apply);
     }

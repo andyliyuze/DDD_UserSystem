@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DDD_CommunitySystem.Domain.Model
+namespace DDD_CommunitySystem.Domain.Entity
 {
    public  class Friendship
     {
