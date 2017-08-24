@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DDD_CommunitySystem.DataModel;
 
-namespace DDD_CommunitySystem.ApplicationService
+namespace DDD_CommunitySystem.ApplicationService.Interfac
 {
-  public  class FriendsApplyApplicationService
+    public class FriendsApplyApplicationService : IFriendsApplyApplicationService
     {
-
+        public bool CreateFriendsApply(FriendsApplyDataModel apply)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

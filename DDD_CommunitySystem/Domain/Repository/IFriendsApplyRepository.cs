@@ -3,7 +3,7 @@ using System;
 
 namespace DDD_CommunitySystem.Domain.Repository
 {
-    public  interface IFriendsApplyRepository
+    public  interface IFriendsApplyRepository : IRepository
     {
         FriendsApply Get(Guid applyId);
         void Add(FriendsApply apply);

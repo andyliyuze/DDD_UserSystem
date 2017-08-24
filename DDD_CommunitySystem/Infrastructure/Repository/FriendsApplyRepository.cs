@@ -12,7 +12,7 @@ namespace DDD_CommunitySystem.Infrastructure.Repository
     {
         public void Add(FriendsApply apply)
         {
-            throw new NotImplementedException();
+            return;
         }
 
         public FriendsApply Get(Guid applyId)

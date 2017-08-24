@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FriendsApplyService_Test.cs" />
+    <Compile Include="FriendsApply_Test.cs" />
     <Compile Include="StudentApplicationService_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DDD_CommunitySystem</RootNamespace>
     <AssemblyName>DDD_CommunitySystem</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,6 +39,34 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Caching.5.0.505.0\lib\NET35\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Interception.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.Interception.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Interception.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -50,20 +79,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationService\FriendsApplyApplicationService.cs" />
-    <Compile Include="ApplicationService\IFriendsApplyApplicationService.cs" />
+    <Compile Include="ApplicationService\Interfac\IFriendsApplyApplicationService.cs" />
     <Compile Include="DataModel\FriendsApplyDataModel.cs" />
     <Compile Include="Domain\Entity\BlacklistRelationship.cs" />
     <Compile Include="Domain\Entity\FriendsApply.cs" />
     <Compile Include="Domain\Entity\Friendship.cs" />
+    <Compile Include="Domain\Event\FriendApplyPassedEventData.cs" />
+    <Compile Include="Domain\Event\Handler\FriendApplyPassedEventHandler.cs" />
     <Compile Include="Domain\Repository\IBlacklistRelationRepository.cs" />
     <Compile Include="Domain\Repository\IFriendsApplyRepository.cs" />
     <Compile Include="Domain\Repository\IFriendshipRepository.cs" />
+    <Compile Include="Domain\Repository\IRepository.cs" />
     <Compile Include="Domain\Rule\Interface\ICreateFriendsApplyBeforeRule.cs" />
     <Compile Include="Domain\Rule\MustNotBeFriendRule.cs" />
     <Compile Include="Domain\Rule\MustNotBeInBacklistRule.cs" />
     <Compile Include="Domain\Service\FriendsApplyService.cs" />
     <Compile Include="Domain\ValueObject\FriendApplyRepond.cs" />
+    <Compile Include="Infrastructure\Cache\EntLibCacheProvider.cs" />
+    <Compile Include="Infrastructure\Cache\ICacheProvider.cs" />
+    <Compile Include="Infrastructure\Repository\BlacklistRelationRepository.cs" />
     <Compile Include="Infrastructure\Repository\FriendsApplyRepository.cs" />
+    <Compile Include="Infrastructure\Repository\FriendshipRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -73,7 +109,12 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Abp\Abp.csproj">
+      <Project>{2C221D3B-5F54-4C5B-8082-318636415132}</Project>
+      <Name>Abp</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

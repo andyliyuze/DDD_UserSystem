@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DDD_CommunitySystem.Domain.Repository
 {
-    public interface IFriendshipRepository
+    public interface IFriendshipRepository : IRepository
     {
         
         IEnumerable<Friendship> Get(Guid userId);

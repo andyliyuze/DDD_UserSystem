@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Autofac;
-using DDD_UserSystem;
 using UserDomain;
 using DDD_UserSystem.ApplicationService;
 using DDD_UserSystem.Infrastructure;
 using DDD_UserSystem.Data.EF.DataModel;
-using AutoMapper;
 using DDD_UserSystem.Data.EF;
+using DDD_CommunitySystem.Infrastructure.Cache;
+using DDD_CommunitySystem.Domain.Rule;
+using DDD_CommunitySystem.Domain.Rule.Interfac;
 
 namespace UnitTest
 {
@@ -24,20 +22,18 @@ namespace UnitTest
         {
 
             var builder = new ContainerBuilder();
+            builder.RegisterType<EntLibCacheProvider>().As<ICacheProvider>().SingleInstance();
             builder.RegisterType<StudentRepository>().As<IStudentRepository>();
             //一次生命周期中该组件实例是唯一的，即共享
             builder.RegisterType<UserContext>().As<IDbContext>().SingleInstance();
             builder.RegisterType<Unitofwork>().As<IUnitOfWork>().SingleInstance();
             builder.RegisterType<StudentApplicationService>().As<IStudentApplicationService>().SingleInstance();
+        
             //在单个scope实例中该组件是共享的，但在不同scope中该组件就会不一样
             //builder.RegisterType<UserContext>().As<IDbContext>().InstancePerLifetimeScope();
             var container = builder.Build();
-
-            var scope = container.BeginLifetimeScope();
-           
-            _service = scope.Resolve<IStudentApplicationService>();
-
-
+            var scope = container.BeginLifetimeScope();      
+            _service = scope.Resolve<IStudentApplicationService>();  
             DataMapConfig.MapConfig();
         }
         [TestMethod()]
