@@ -1,16 +1,13 @@
 ﻿using DDD_CommunitySystem.Domain.Entity;
- 
 using DDD_CommunitySystem.Domain.Repository;
+using DDD_CommunitySystem.Domain.Rule.Interfac;
 using DDD_CommunitySystem.Domain.ValueObject;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DDD_CommunitySystem.Domain.Service
 {
-   public class FriendsApplyService
+    public class FriendsApplyService
     {
 
         private IFriendsApplyRepository _friendsApplyRepository;
@@ -18,31 +15,23 @@ namespace DDD_CommunitySystem.Domain.Service
         {
             _friendsApplyRepository = friendsApplyRepository;
         }
-        public CreateFriendApplyRepond CreateSingleFriendsApply(Guid applicantUserId,Guid receiverUserId)
+        public CreateFriendApplyRepond CreateSingleFriendsApply(Guid applicantUserId, Guid receiverUserId)
         {
-            
-            if (IsInBacklist(applicantUserId, receiverUserId))
+            //获取实现该接口的所有类
+            var types = AppDomain.CurrentDomain.GetAssemblies()
+              .SelectMany(a => a.GetTypes().Where(t => t.GetInterfaces().Contains(typeof(ICreateFriendsApplyBeforeRule)) && t.IsClass == true)
+              ).ToArray();
+            foreach (var v in types)
             {
-                return new CreateFriendApplyRepond()
-                {
-                    Result = CreateFriendApplyResult.faild,
-                    FaildReason = FaildReason.BeInBacklist
-                };
+                var respond = (Activator.CreateInstance(v) as ICreateFriendsApplyBeforeRule).verify(applicantUserId, receiverUserId);
+                if (respond.Result == CreateFriendApplyResult.faild) { return respond; }
             }
-            if (IsFriend(applicantUserId, receiverUserId))
-            {
-                return new CreateFriendApplyRepond()
-                {
-                    Result = CreateFriendApplyResult.faild,
-                    FaildReason = FaildReason.BeFriend
-                };
-            }
+
             var friendsApply = new FriendsApply(applicantUserId, receiverUserId);
             _friendsApplyRepository.Add(friendsApply);
-
             return new CreateFriendApplyRepond()
             {
-                Result = CreateFriendApplyResult.succeed  
+                Result = CreateFriendApplyResult.succeed
             };
         }
 

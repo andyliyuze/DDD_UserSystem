@@ -58,10 +58,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FriendsApplyService_Test.cs" />
     <Compile Include="StudentApplicationService_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DDD_CommunitySystem\DDD_CommunitySystem.csproj">
+      <Project>{705c235e-e11b-4072-ae58-311ecd32722f}</Project>
+      <Name>DDD_CommunitySystem</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DDD_UserSystem\DDD_UserSystem.csproj">
       <Project>{B70E142D-F82F-4D60-AF82-922603A0B1BC}</Project>
       <Name>DDD_UserSystem</Name>

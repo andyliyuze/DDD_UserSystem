@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace DDD_CommunitySystem.Domain.ValueObject
 {
-  public  class CreateFriendApplyRepond
-   {
-
+    public  class CreateFriendApplyRepond
+     {
           public CreateFriendApplyResult Result { get; set; }
           public FaildReason FaildReason { get; set; }
     }

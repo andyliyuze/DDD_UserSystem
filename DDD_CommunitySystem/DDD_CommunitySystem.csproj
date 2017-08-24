@@ -55,10 +55,15 @@
     <Compile Include="Domain\Entity\BlacklistRelationship.cs" />
     <Compile Include="Domain\Entity\FriendsApply.cs" />
     <Compile Include="Domain\Entity\Friendship.cs" />
+    <Compile Include="Domain\Repository\IBlacklistRelationRepository.cs" />
     <Compile Include="Domain\Repository\IFriendsApplyRepository.cs" />
     <Compile Include="Domain\Repository\IFriendshipRepository.cs" />
+    <Compile Include="Domain\Rule\Interface\ICreateFriendsApplyBeforeRule.cs" />
+    <Compile Include="Domain\Rule\MustNotBeFriendRule.cs" />
+    <Compile Include="Domain\Rule\MustNotBeInBacklistRule.cs" />
     <Compile Include="Domain\Service\FriendsApplyService.cs" />
     <Compile Include="Domain\ValueObject\FriendApplyRepond.cs" />
+    <Compile Include="Infrastructure\Repository\FriendsApplyRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +73,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
