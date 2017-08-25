@@ -94,6 +94,7 @@
     <Compile Include="Domain\Rule\MustNotBeFriendRule.cs" />
     <Compile Include="Domain\Rule\MustNotBeInBacklistRule.cs" />
     <Compile Include="Domain\Service\FriendsApplyService.cs" />
+    <Compile Include="Domain\Service\FriendshipService.cs" />
     <Compile Include="Domain\ValueObject\FriendApplyRepond.cs" />
     <Compile Include="Infrastructure\Cache\EntLibCacheProvider.cs" />
     <Compile Include="Infrastructure\Cache\ICacheProvider.cs" />

@@ -1,4 +1,5 @@
 ﻿using Abp.Events.Bus;
+using Abp.Events.Bus.Entities;
 using DDD_CommunitySystem.Domain.Event;
 using DDD_CommunitySystem.Domain.Event.Handler;
 using System;
@@ -14,10 +15,8 @@ namespace DDD_CommunitySystem.Domain.Entity
             ApplicanUsertId = applicanUsertId;
             ReceiverUserId = receiverUserId;
             ApplyTime = DateTime.Now;
-            EventBus = new EventBus();
-            EventBus.Register<FriendApplyPassedEventData, FriendApplyPassedEventHandler>();
-
-
+           EventBus = NullEventBus.Instance;
+       //     EventBus.Register<FriendApplyPassedEventData, FriendApplyPassedEventHandler>();
         }
         public IEventBus EventBus { get; set; }
 
@@ -43,7 +42,7 @@ namespace DDD_CommunitySystem.Domain.Entity
             this.ReplyTime = DateTime.Now;
             this.Result = "通过";
             //引发事件
-            EventBus.Trigger(new FriendApplyPassedEventData(this.ApplicanUsertId,this.ReceiverUserId));
+            EventBus.Trigger(new FriendsApplyPassedEventData(this));
         }
 
  

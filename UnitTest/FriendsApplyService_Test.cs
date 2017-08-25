@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using Abp.Modules;
+using Autofac;
 using DDD_CommunitySystem.Domain.Repository;
 using DDD_CommunitySystem.Domain.Rule;
 using DDD_CommunitySystem.Domain.Rule.Interfac;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +21,7 @@ namespace UnitTest
     public class FriendsApplyService_Test
     {
         private FriendsApplyService _service ;
+      
         public FriendsApplyService_Test()
         {
             var builder = new ContainerBuilder();

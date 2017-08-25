@@ -1,4 +1,5 @@
 ﻿using Abp.Events.Bus;
+using Abp.Events.Bus.Entities;
 using DDD_CommunitySystem.Domain.Entity;
 using System;
 using System.Collections.Generic;
@@ -8,14 +9,17 @@ using System.Threading.Tasks;
 
 namespace DDD_CommunitySystem.Domain.Event
 {
- public   class FriendApplyPassedEventData : EventData
+ public   class  FriendsApplyPassedEventData:EntityEventData<FriendsApply>
     {
-        private Guid _receiverUserId;
-        private Guid _applicanUsertId;
-        public FriendApplyPassedEventData(Guid receiverUserId,Guid applicanUsertId)
+        public Guid receiverUserId;
+        public Guid applicanUsertId;
+
+        public FriendsApplyPassedEventData(FriendsApply entity) : base(entity)
         {
-            _receiverUserId = receiverUserId;
-            _applicanUsertId = applicanUsertId;
+            receiverUserId = entity.ReceiverUserId;
+            applicanUsertId = entity.ApplicanUsertId;
         }
+
+         
     }
 }
