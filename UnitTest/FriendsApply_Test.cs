@@ -25,40 +25,26 @@ namespace UnitTest
         public FriendsApply_Test()
         {
 
-            var builder = new ContainerBuilder();
+            //var builder = new ContainerBuilder();
 
-            builder.RegisterType<FriendsApplyRepository>().As<IFriendsApplyRepository>();
-            builder.RegisterType<BlacklistRelationRepository>().As<IBlacklistRelationRepository>();
-            builder.RegisterType<FriendshipRepository>().As<IFriendshipRepository>();
-            builder.RegisterType<FriendshipService>().As<FriendshipService>();
-            var container = builder.Build();
+            //builder.RegisterType<FriendsApplyRepository>().As<IFriendsApplyRepository>();
+            //builder.RegisterType<BlacklistRelationRepository>().As<IBlacklistRelationRepository>();
+            //builder.RegisterType<FriendshipRepository>().As<IFriendshipRepository>();
+            //builder.RegisterType<FriendshipService>().As<FriendshipService>();
+            //var container = builder.Build();
 
-            var scope = container.BeginLifetimeScope();
+            //var scope = container.BeginLifetimeScope();
 
-            //var friendsApplyRepository = scope.Resolve<IFriendsApplyRepository>();
-            //var friendshiRepository = scope.Resolve<IFriendshipRepository>();
-            //var blacklistRelationRepository = scope.Resolve<IBlacklistRelationRepository>();
-            var friendshipService = scope.Resolve<FriendshipService>();
-            LocalIocManager = new IocManager();
-
+            ////var friendsApplyRepository = scope.Resolve<IFriendsApplyRepository>();
+            ////var friendshiRepository = scope.Resolve<IFriendshipRepository>();
+            ////var blacklistRelationRepository = scope.Resolve<IBlacklistRelationRepository>();
+            //var friendshipService = scope.Resolve<FriendshipService>();
+            LocalIocManager = new IocManager();           
             AbpBootstrapper abpBootstrapper = new AbpBootstrapper(LocalIocManager);
-            abpBootstrapper.Initialize();
-            abpBootstrapper.Dispose();
-
+             abpBootstrapper.Initialize();          
             LocalIocManager.Register<IModuleFinder, MyTestModuleFinder>();
-            var otherModule = LocalIocManager.Resolve<MyModule>();
-           // Initialize();
-            var container2 = new WindsorContainer();
-
-            container2.Register(
-                    Component.For<IEventBus>().ImplementedBy<EventBus>().LifestyleTransient()
-                     
-                );
-         //   container2.Install()
-            obj2 = container2.Resolve<IEventBus>();
-
-
-           
+            var otherModule = LocalIocManager.Resolve<MyModule>();         
+            obj2 = LocalIocManager.Resolve<IEventBus>();
           
         }
 
@@ -84,7 +70,8 @@ namespace UnitTest
 
     public class MyModule : AbpModule
     {
-        
+
+       
         public override void Initialize()
         {
             

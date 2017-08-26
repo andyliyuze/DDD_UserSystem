@@ -1,4 +1,5 @@
-﻿using DDD_CommunitySystem.Domain.Entity;
+﻿using Abp.Domain.Repositories;
+using DDD_CommunitySystem.Domain.Entity;
 using System;
 
 namespace DDD_CommunitySystem.Domain.Repository

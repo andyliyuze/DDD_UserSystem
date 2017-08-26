@@ -1,4 +1,5 @@
-﻿using DDD_CommunitySystem.Domain.Entity;
+﻿using Abp.Domain.Services;
+using DDD_CommunitySystem.Domain.Entity;
 using DDD_CommunitySystem.Domain.Repository;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DDD_CommunitySystem.Domain.Service
 {
-  public  class FriendshipService
+  public  class FriendshipService:IFriendshipService
     {
 
        

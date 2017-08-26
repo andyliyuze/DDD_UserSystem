@@ -16,17 +16,17 @@ namespace DDD_CommunitySystem.Domain.Event.Handler
    public class FriendApplyPassedEventHandler : IEventHandler<FriendsApplyPassedEventData>    , ITransientDependency
     {
 
-     //   private FriendshipService _friendshipService;
+        private IFriendshipService _friendshipService;
 
-        public FriendApplyPassedEventHandler()
+        public FriendApplyPassedEventHandler(IFriendshipService friendshipService)
         {
-           
+            _friendshipService = friendshipService;
         }
 
         public void HandleEvent(FriendsApplyPassedEventData eventData)
         {
-            string a = "";
-         //   _friendshipService.BuildFriendship(eventData.applicanUsertId, eventData.applicanUsertId);
+           
+           _friendshipService.BuildFriendship(eventData.applicanUsertId, eventData.applicanUsertId);
         }
 
         

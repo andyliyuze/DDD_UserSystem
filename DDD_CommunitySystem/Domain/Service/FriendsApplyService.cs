@@ -1,4 +1,5 @@
-﻿using DDD_CommunitySystem.Domain.Entity;
+﻿using Abp.Domain.Services;
+using DDD_CommunitySystem.Domain.Entity;
 using DDD_CommunitySystem.Domain.Repository;
 using DDD_CommunitySystem.Domain.Rule.Interfac;
 using DDD_CommunitySystem.Domain.ValueObject;
@@ -9,7 +10,7 @@ using System.Linq;
 
 namespace DDD_CommunitySystem.Domain.Service
 {
-    public class FriendsApplyService
+    public class FriendsApplyService: IFriendsApplyService
     {
 
         private IFriendsApplyRepository _friendsApplyRepository;
