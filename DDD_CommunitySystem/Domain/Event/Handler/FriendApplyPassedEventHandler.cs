@@ -26,7 +26,7 @@ namespace DDD_CommunitySystem.Domain.Event.Handler
         public void HandleEvent(FriendsApplyPassedEventData eventData)
         {
            
-           _friendshipService.BuildFriendship(eventData.applicanUsertId, eventData.applicanUsertId);
+           _friendshipService.BuildFriendship(eventData.applicanUsertId, eventData.receiverUserId);
         }
 
         

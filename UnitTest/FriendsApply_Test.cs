@@ -13,6 +13,7 @@ using System.Reflection;
 using Abp.Modules;
 using Abp;
 using System.Collections.Generic;
+using DDD_CommunitySystem.Infrastructure;
 
 namespace UnitTest
 {
@@ -20,7 +21,7 @@ namespace UnitTest
     public class FriendsApply_Test 
     {
         private IEventBus obj2;
-
+        private IUnitOfWork _unitofwork;
         private IIocManager LocalIocManager;
         public FriendsApply_Test()
         {
@@ -43,9 +44,13 @@ namespace UnitTest
             AbpBootstrapper abpBootstrapper = new AbpBootstrapper(LocalIocManager);
              abpBootstrapper.Initialize();          
             LocalIocManager.Register<IModuleFinder, MyTestModuleFinder>();
+            LocalIocManager.Register<IUnitOfWork, Unitofwork>(DependencyLifeStyle.Singleton);
+            LocalIocManager.Register<IDbContext, CommunityContext>(DependencyLifeStyle.Singleton);
             var otherModule = LocalIocManager.Resolve<MyModule>();         
             obj2 = LocalIocManager.Resolve<IEventBus>();
-          
+            _unitofwork= LocalIocManager.Resolve<IUnitOfWork>();
+           var context= LocalIocManager.Resolve<IDbContext>();
+            context.verson = 1;
         }
 
         [TestMethod()]
@@ -54,6 +59,7 @@ namespace UnitTest
             FriendsApply apply = new FriendsApply(Guid.NewGuid(), Guid.NewGuid());
            apply.EventBus = obj2;
             apply.PassApply();
+            _unitofwork.Commit();
         }
     }
     public class MyTestModuleFinder : IModuleFinder
