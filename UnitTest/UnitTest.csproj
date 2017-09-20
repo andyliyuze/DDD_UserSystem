@@ -54,7 +54,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -73,7 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Abp\Abp.csproj">
-      <Project>{2C221D3B-5F54-4C5B-8082-318636415132}</Project>
+      <Project>{eccce00a-260f-4abe-a9c0-1df1a1cb3749}</Project>
       <Name>Abp</Name>
     </ProjectReference>
     <ProjectReference Include="..\DDD_CommunitySystem\DDD_CommunitySystem.csproj">

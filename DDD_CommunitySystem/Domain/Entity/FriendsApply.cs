@@ -1,4 +1,5 @@
-﻿using Abp.Events.Bus;
+﻿using Abp.Domain.Entities;
+using Abp.Events.Bus;
 using Abp.Events.Bus.Entities;
 using DDD_CommunitySystem.Domain.Event;
 using DDD_CommunitySystem.Domain.Event.Handler;
@@ -7,11 +8,11 @@ using System;
 namespace DDD_CommunitySystem.Domain.Entity
 {
 
-    public class FriendsApply
+    public class FriendsApply: Entity<Guid>
     {
         public FriendsApply(Guid applicanUsertId, Guid receiverUserId)
         {
-            FriendsApplyId = Guid.NewGuid();
+            Id = Guid.NewGuid();
             ApplicanUsertId = applicanUsertId;
             ReceiverUserId = receiverUserId;
             ApplyTime = DateTime.Now;
@@ -20,7 +21,7 @@ namespace DDD_CommunitySystem.Domain.Entity
         }
         public IEventBus EventBus { get; set; }
 
-        public Guid FriendsApplyId { get; private set; }
+  
 
         public Guid ApplicanUsertId { get; private set; }
 

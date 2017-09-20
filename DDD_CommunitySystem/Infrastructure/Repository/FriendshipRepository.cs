@@ -10,9 +10,21 @@ namespace DDD_CommunitySystem.Infrastructure.Repository
 {
     public class FriendshipRepository : IFriendshipRepository
     {
+
+        private IDbContext _context;
+        private IUnitOfWork _unitofwork;
+
+
+        public FriendshipRepository(IDbContext context, IUnitOfWork unitofwork)
+        {
+
+            _context = context;
+            _unitofwork = unitofwork;
+        }
+
         public void Add(Friendship friendship)
         {
-            throw new NotImplementedException();
+            _context.Friendship.Add(friendship);
         }
 
         public IEnumerable<Friendship> Get(Guid userId)

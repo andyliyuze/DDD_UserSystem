@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2C221D3B-5F54-4C5B-8082-318636415132}</ProjectGuid>
+    <ProjectGuid>{ECCCE00A-260F-4ABE-A9C0-1DF1A1CB3749}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Abp</RootNamespace>
@@ -110,6 +110,7 @@
     <Compile Include="Auditing\IMvcControllersAuditingConfiguration.cs" />
     <Compile Include="Auditing\MvcControllersAuditingConfiguration.cs" />
     <Compile Include="Configuration\CacheManagerSettingExtensions.cs" />
+    <Compile Include="IGuidGenerator.cs" />
     <Compile Include="Runtime\Caching\Configuration\CacheConfigurator.cs" />
     <Compile Include="Runtime\Caching\Configuration\CachingConfiguration.cs" />
     <Compile Include="Runtime\Caching\Configuration\ICacheConfigurator.cs" />

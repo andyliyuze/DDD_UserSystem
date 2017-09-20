@@ -13,6 +13,7 @@ using System.Reflection;
 using Abp.Modules;
 using Abp;
 using System.Collections.Generic;
+using DDD_CommunitySystem.Infrastructure;
 
 namespace UnitTest
 {
@@ -20,46 +21,36 @@ namespace UnitTest
     public class FriendsApply_Test 
     {
         private IEventBus obj2;
-
+        private IUnitOfWork _unitofwork;
         private IIocManager LocalIocManager;
         public FriendsApply_Test()
         {
 
-            var builder = new ContainerBuilder();
+            //var builder = new ContainerBuilder();
 
-            builder.RegisterType<FriendsApplyRepository>().As<IFriendsApplyRepository>();
-            builder.RegisterType<BlacklistRelationRepository>().As<IBlacklistRelationRepository>();
-            builder.RegisterType<FriendshipRepository>().As<IFriendshipRepository>();
-            builder.RegisterType<FriendshipService>().As<FriendshipService>();
-            var container = builder.Build();
+            //builder.RegisterType<FriendsApplyRepository>().As<IFriendsApplyRepository>();
+            //builder.RegisterType<BlacklistRelationRepository>().As<IBlacklistRelationRepository>();
+            //builder.RegisterType<FriendshipRepository>().As<IFriendshipRepository>();
+            //builder.RegisterType<FriendshipService>().As<FriendshipService>();
+            //var container = builder.Build();
 
-            var scope = container.BeginLifetimeScope();
+            //var scope = container.BeginLifetimeScope();
 
-            //var friendsApplyRepository = scope.Resolve<IFriendsApplyRepository>();
-            //var friendshiRepository = scope.Resolve<IFriendshipRepository>();
-            //var blacklistRelationRepository = scope.Resolve<IBlacklistRelationRepository>();
-            var friendshipService = scope.Resolve<FriendshipService>();
-            LocalIocManager = new IocManager();
-
+            ////var friendsApplyRepository = scope.Resolve<IFriendsApplyRepository>();
+            ////var friendshiRepository = scope.Resolve<IFriendshipRepository>();
+            ////var blacklistRelationRepository = scope.Resolve<IBlacklistRelationRepository>();
+            //var friendshipService = scope.Resolve<FriendshipService>();
+            LocalIocManager = new IocManager();           
             AbpBootstrapper abpBootstrapper = new AbpBootstrapper(LocalIocManager);
-            abpBootstrapper.Initialize();
-            abpBootstrapper.Dispose();
-
+             abpBootstrapper.Initialize();          
             LocalIocManager.Register<IModuleFinder, MyTestModuleFinder>();
-            var otherModule = LocalIocManager.Resolve<MyModule>();
-           // Initialize();
-            var container2 = new WindsorContainer();
-
-            container2.Register(
-                    Component.For<IEventBus>().ImplementedBy<EventBus>().LifestyleTransient()
-                     
-                );
-         //   container2.Install()
-            obj2 = container2.Resolve<IEventBus>();
-
-
-           
-          
+            LocalIocManager.Register<IUnitOfWork, Unitofwork>(DependencyLifeStyle.Singleton);
+            LocalIocManager.Register<IDbContext, CommunityContext>(DependencyLifeStyle.Singleton);
+            var otherModule = LocalIocManager.Resolve<MyModule>();         
+            obj2 = LocalIocManager.Resolve<IEventBus>();
+            _unitofwork= LocalIocManager.Resolve<IUnitOfWork>();
+           var context= LocalIocManager.Resolve<IDbContext>();
+            context.verson = 1;
         }
 
         [TestMethod()]
@@ -68,6 +59,7 @@ namespace UnitTest
             FriendsApply apply = new FriendsApply(Guid.NewGuid(), Guid.NewGuid());
            apply.EventBus = obj2;
             apply.PassApply();
+            _unitofwork.Commit();
         }
     }
     public class MyTestModuleFinder : IModuleFinder
@@ -84,7 +76,8 @@ namespace UnitTest
 
     public class MyModule : AbpModule
     {
-        
+
+       
         public override void Initialize()
         {
             

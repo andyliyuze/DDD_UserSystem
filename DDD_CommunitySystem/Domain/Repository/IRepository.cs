@@ -6,7 +6,5 @@ using System.Threading.Tasks;
 
 namespace DDD_CommunitySystem.Domain.Repository
 {
-   public interface IRepository
-    {
-    }
+  
 }
