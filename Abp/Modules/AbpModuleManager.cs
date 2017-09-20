@@ -56,6 +56,7 @@ namespace Abp.Modules
             //Register to IOC container.
             foreach (var moduleType in moduleTypes)
             {
+                
                 if (!AbpModule.IsAbpModule(moduleType))
                 {
                     throw new AbpInitializationException("This type is not an ABP module: " + moduleType.AssemblyQualifiedName);

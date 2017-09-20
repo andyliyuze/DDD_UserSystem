@@ -1,26 +1,24 @@
 ﻿using Abp.Dependency;
-using Abp.Domain.Services;
-using Abp.Events.Bus.Entities;
 using Abp.Events.Bus.Handlers;
-using DDD_CommunitySystem.Domain.Entity;
-using DDD_CommunitySystem.Domain.Repository;
-using DDD_CommunitySystem.Domain.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
+using NServiceBus;
+using NServiceBus.Logging;
 namespace DDD_CommunitySystem.Domain.Event.Handler
 {
-   public class FriendApplyPassedEventHandler : IEventHandler<FriendsApplyPassedEventData>    , ITransientDependency
+    public class FriendApplyPassedEventHandler : IEventHandler<FriendsApplyPassedEventData>    , ITransientDependency, IHandleMessages<FriendsApplyPassedEventData>
     {
 
-     //   private FriendshipService _friendshipService;
-
+        //   private FriendshipService _friendshipService;
+        static ILog log = LogManager.GetLogger<FriendsApplyPassedEventData>();
         public FriendApplyPassedEventHandler()
         {
            
+        }
+
+        public Task Handle(FriendsApplyPassedEventData message, IMessageHandlerContext context)
+        {
+            log.Info($"Received OrderPlaced, OrderId = {message.receiverUserId} - Charging credit card...");
+            return Task.CompletedTask;
         }
 
         public void HandleEvent(FriendsApplyPassedEventData eventData)
