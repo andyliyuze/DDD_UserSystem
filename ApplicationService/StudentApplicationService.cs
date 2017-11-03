@@ -15,11 +15,11 @@ namespace UserDomain
 
         private IStudentRepository _studentRepository;
         private IUnitOfWork _unitofwork;
-        private IDbContext _context;
-        public StudentApplicationService(IDbContext context, IUnitOfWork unitofwork, IStudentRepository studentRepository)
+       
+        public StudentApplicationService(  IUnitOfWork unitofwork, IStudentRepository studentRepository)
         {
             _studentRepository = studentRepository;
-            _context = context;
+           
             _unitofwork = unitofwork;
 
         }

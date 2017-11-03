@@ -28,7 +28,7 @@ namespace UserDomain
                 var unitofwork = scope.Resolve<IUnitOfWork>();
                 var service = scope.Resolve<IStudentRepository>();
                 context.Verson = 1;
-                StudentApplicationService applicationservice = new StudentApplicationService(context, unitofwork,service);
+                StudentApplicationService applicationservice = new StudentApplicationService( unitofwork,service);
                 var list = new List<Contact>
                 {
                     new Contact(0, 333)
