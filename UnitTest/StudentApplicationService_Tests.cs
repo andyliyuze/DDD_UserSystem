@@ -8,15 +8,13 @@ using DDD_UserSystem.Infrastructure;
 using DDD_UserSystem.Data.EF.DataModel;
 using DDD_UserSystem.Data.EF;
 using DDD_CommunitySystem.Infrastructure.Cache;
-using DDD_CommunitySystem.Domain.Rule;
-using DDD_CommunitySystem.Domain.Rule.Interfac;
-
+using AutoMapper;
 namespace UnitTest
 {
     [TestClass()]
     public class StudentApplicationService_Tests
     {
- 
+
         private IStudentApplicationService _service;
         public StudentApplicationService_Tests()
         {
@@ -28,12 +26,12 @@ namespace UnitTest
             builder.RegisterType<UserContext>().As<IDbContext>().SingleInstance();
             builder.RegisterType<Unitofwork>().As<IUnitOfWork>().SingleInstance();
             builder.RegisterType<StudentApplicationService>().As<IStudentApplicationService>().SingleInstance();
-        
+
             //在单个scope实例中该组件是共享的，但在不同scope中该组件就会不一样
             //builder.RegisterType<UserContext>().As<IDbContext>().InstancePerLifetimeScope();
             var container = builder.Build();
-            var scope = container.BeginLifetimeScope();      
-            _service = scope.Resolve<IStudentApplicationService>();  
+            var scope = container.BeginLifetimeScope();
+            _service = scope.Resolve<IStudentApplicationService>();
             DataMapConfig.MapConfig();
         }
         [TestMethod()]
@@ -53,8 +51,16 @@ namespace UnitTest
             Guid UserId = Guid.NewGuid();
             List<ContactDataModel> contacts = new List<ContactDataModel>();
             contacts.Add(new ContactDataModel() { ContactId = Guid.NewGuid(), Phone = 1231312313, QQ = 12312312, UserId = UserId });
-            var stu = new StudentDataModel() { ID = UserId, Age = "123", Detail = "1sss", LoginName = "liyuze", Password = "Andy", RealName = "李雨泽", Contry = "chaina", Contacts=contacts };
+            var stu = new StudentDataModel() { ID = UserId, Age = "123", Detail = "1sss", LoginName = "liyuze", Password = "Andy", RealName = "李雨泽", Contry = "chaina", Contacts = contacts };
             _service.AddStudent(stu);
         }
-    }
+
+        [TestMethod()]
+        public void Mapper_Test()
+        {
+            User user = new User { Age = "12", RealName = "Andy" };
+            Post post = new Post { Id = Guid.NewGuid(), Content = "23123123" };
+            var dto = Mapper.Map<PostInfo>(post);
+        }
+        }
 }
