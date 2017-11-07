@@ -25,7 +25,7 @@ namespace DDD_UserSystem.Infrastructure
         public void RegisterDirty<TEntity>(TEntity entity) where TEntity : class
         {
             _dbContext.Entry<TEntity>(entity).State = EntityState.Modified;
-
+           
         }
 
         public void RegisterClean<TEntity>(TEntity entity) where TEntity : class
@@ -43,6 +43,13 @@ namespace DDD_UserSystem.Infrastructure
         public int Commit()
         {
         return     _dbContext.SaveChanges();
+        }
+
+        
+
+        public async Task<int> CommitAysnc()
+        {
+            return await _dbContext.CommitAsync();
         }
     }
 }

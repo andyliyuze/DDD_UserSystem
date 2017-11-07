@@ -6,6 +6,7 @@ using DDD_UserSystem.Infrastructure;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -29,6 +30,7 @@ namespace UserDomain
                 var contactDataModel = Mapper.Map<Contact, ContactDataModel>(contact);
                 contactDataModel.UserId = student.ID;
                _context.Contacts.Add(contactDataModel);
+            
             }
             _context.Student.Add(student);
         }
@@ -48,13 +50,14 @@ namespace UserDomain
             return stu;
         }
 
-        public void Update(Student student)
+        public async void Update(Student student)
         {
 
             //此逻辑符合添加或删除Contact的业务用例
 
             //先删除数据所有该用户数据
-            List<ContactDataModel> SQLDataList = _context.Contacts.Where(a => a.UserId == student.ID).ToList();
+            List<ContactDataModel> SQLDataList = await _context.Contacts.Where(a => a.UserId == student.ID).ToListAsync();
+             
             _context.Contacts.RemoveRange(SQLDataList);         
             //再添加数据
             foreach (var domainModel in student.Contacts)

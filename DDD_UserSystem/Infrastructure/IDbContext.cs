@@ -15,6 +15,7 @@ namespace DDD_UserSystem.Infrastructure
         DbSet Set(Type entityType);
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
         int SaveChanges();
+        Task<int> CommitAsync();
         DbEntityEntry Entry(object entity);
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
         void Dispose();
@@ -37,6 +38,7 @@ namespace DDD_UserSystem.Infrastructure
 
         int Commit();
 
+        Task<int> CommitAysnc();
 
     }
 }

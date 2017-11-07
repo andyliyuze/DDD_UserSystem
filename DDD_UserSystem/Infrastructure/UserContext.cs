@@ -27,7 +27,13 @@ namespace DDD_UserSystem.Infrastructure
 
         public int Commit()
         {
+         
             return this.SaveChanges();
+        }
+
+        public async Task<int> CommitAsync() {
+          return await   this.SaveChangesAsync();
+
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
