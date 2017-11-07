@@ -23,8 +23,7 @@ namespace DDD_UserSystem.Data.EF
                 cfg.CreateMap<ContactDataModel, Contact>();
                 cfg.CreateMap<Contact, ContactDataModel>();
 
-                cfg.CreateMap<Post, PostInfo>();
-                cfg.CreateMap<User, PostInfo>().ForMember(d=>d.AuthorName,opt=>opt.MapFrom(s=>s.RealName));
+
             });
         }
     }

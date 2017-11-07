@@ -104,7 +104,6 @@
     <Compile Include="ApplicationService\IStudentApplicationService.cs" />
     <Compile Include="Data.EF\DataMapConfig.cs" />
     <Compile Include="Data.EF\DataModel\ContactDataModel.cs" />
-    <Compile Include="Data.EF\DataModel\PostInfo.cs" />
     <Compile Include="Data.EF\DataModel\StudentDataModel.cs" />
     <Compile Include="DataMap\ContactMap.cs" />
     <Compile Include="Domain\AggregateRoot.cs" />
