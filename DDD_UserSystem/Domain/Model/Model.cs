@@ -38,6 +38,7 @@ namespace UserDomain
       
         public List<Contact> Contacts { get;   set; }
 
+        public string QQ { get; private set; }
 
 
 

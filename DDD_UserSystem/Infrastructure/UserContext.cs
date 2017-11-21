@@ -38,14 +38,14 @@ namespace DDD_UserSystem.Infrastructure
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Types().Configure(d =>
-            {
-                var nonPublicProperties = d.ClrType.GetProperties(BindingFlags.NonPublic | BindingFlags.Instance);
-                foreach (var p in nonPublicProperties)
-                {
-                    d.Property(p).HasColumnName(p.Name);
-                }
-            });
+            //modelBuilder.Types().Configure(d =>
+            //{
+            //    var nonPublicProperties = d.ClrType.GetProperties(BindingFlags.NonPublic | BindingFlags.Instance);
+            //    foreach (var p in nonPublicProperties)
+            //    {
+            //        d.Property(p).HasColumnName(p.Name);
+            //    }
+            //});
             modelBuilder.ComplexType<Address>();
             modelBuilder.ComplexType<LoginInfo>();      
             modelBuilder.Entity<Student>().Ignore(t => t.Contacts);

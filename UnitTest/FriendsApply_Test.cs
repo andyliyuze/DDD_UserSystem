@@ -1,14 +1,8 @@
-﻿using Autofac;
-using DDD_CommunitySystem.Domain.Entity;
-using DDD_CommunitySystem.Domain.Repository;
-using DDD_CommunitySystem.Domain.Service;
-using DDD_CommunitySystem.Infrastructure.Repository;
+﻿using DDD_CommunitySystem.Domain.Entity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Abp.Dependency;
 using Abp.Events.Bus;
-using Castle.Windsor;
-using Castle.MicroKernel.Registration;
 using System.Reflection;
 using Abp.Modules;
 using Abp;

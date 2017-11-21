@@ -1,19 +1,10 @@
-﻿using Abp.Modules;
-using Autofac;
+﻿using Autofac;
 using DDD_CommunitySystem.Domain.Repository;
-using DDD_CommunitySystem.Domain.Rule;
-using DDD_CommunitySystem.Domain.Rule.Interfac;
 using DDD_CommunitySystem.Domain.Service;
-using DDD_CommunitySystem.Infrastructure.Cache;
 using DDD_CommunitySystem.Infrastructure.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UnitTest
 {

@@ -107,14 +107,20 @@
     <Compile Include="Domain\Rule\MustNotBeInBacklistRule.cs" />
     <Compile Include="Domain\Service\FriendsApplyService.cs" />
     <Compile Include="Domain\Service\FriendshipService.cs" />
+    <Compile Include="Domain\Service\IFriendsApplyService.cs" />
+    <Compile Include="Domain\Service\IFriendshipService.cs" />
     <Compile Include="Domain\ValueObject\FriendApplyRepond.cs" />
     <Compile Include="Infrastructure\Cache\EntLibCacheProvider.cs" />
     <Compile Include="Infrastructure\Cache\ICacheProvider.cs" />
+    <Compile Include="Infrastructure\CommunityContext.cs" />
     <Compile Include="Infrastructure\EventBus\IEventBus.cs" />
     <Compile Include="Infrastructure\EventBus\NserviceBus.cs" />
+    <Compile Include="Infrastructure\IDbContext.cs" />
     <Compile Include="Infrastructure\Repository\BlacklistRelationRepository.cs" />
     <Compile Include="Infrastructure\Repository\FriendsApplyRepository.cs" />
     <Compile Include="Infrastructure\Repository\FriendshipRepository.cs" />
+    <Compile Include="Infrastructure\Unitofwork.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
